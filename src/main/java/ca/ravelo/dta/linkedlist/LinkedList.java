@@ -273,4 +273,45 @@ public class LinkedList<T> {
 
         return true;
     }
+
+    // Remove disassociate a node from the
+    // LinkList O(n)
+    //
+    // Edge cases:
+    //  * index is out of bounds (i < 0 || length < i)
+    //  * Does not have any nodes
+    //  * Has one node
+    //  * has more than one node
+    public Node<T> remove(int index) {
+        // if the index is out of bounds
+        if (index < 0 || length <= index) {
+            // return false
+            return null;
+        }
+
+        // if the index is 0
+        if (index == 0) {
+            // removeFirst
+            return removeFirst();
+        }
+
+        // if index equals the length append
+        if (index == (length - 1)) {
+            // removeLast
+            return removeLast();
+        }
+
+        // set previous to point to the predecessor node
+        Node<T> prev = get(index - 1);
+        // set current to point to the node to remove
+        Node<T> curr = prev.getNext();
+        // set previous.next to the next successor node
+        prev.setNext(curr.getNext());
+        // set current.next to point to null to remove it
+        curr.setNext(null);
+        // decrease length
+        length--;
+
+        return curr;
+    }
 }

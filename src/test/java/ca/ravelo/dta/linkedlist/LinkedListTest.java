@@ -419,4 +419,94 @@ class LinkedListTest {
         assertEquals(sut.getLength(), 4);
     }
 
+    @Test
+    public void test_remove_indexLessThanZero() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>();
+
+        // when
+        Node<Integer> removedNode = sut.remove(-1);
+
+        // then
+        assertNull(removedNode);
+    }
+
+    @Test
+    public void test_remove_equalToLength() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>();
+
+        // when
+        Node<Integer> removedNode = sut.remove(sut.getLength());
+
+        // then
+        assertNull(removedNode);
+    }
+
+    @Test
+    public void test_remove_greaterThanLength() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>();
+
+        // when
+        Node<Integer> removedNode = sut.remove(sut.getLength() + 1);
+
+        // then
+        assertNull(removedNode);
+    }
+
+    @Test
+    public void test_remove_threeNodes_first() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+        sut.append(1);
+        sut.append(2);
+
+        // when
+        Node<Integer> removedNode = sut.remove(0);
+
+        // then
+        assertNotNull(removedNode);
+        assertEquals(removedNode.getValue(), 0);
+        assertEquals(sut.getHead().getValue(), 1);
+        assertEquals(sut.getTail().getValue(), 2);
+        assertEquals(sut.getLength(), 2);
+    }
+
+    @Test
+    public void test_remove_threeNodes_middle() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+        sut.append(1);
+        sut.append(2);
+
+        // when
+        Node<Integer> removedNode = sut.remove(1);
+
+        // then
+        assertNotNull(removedNode);
+        assertEquals(removedNode.getValue(), 1);
+        assertEquals(sut.getHead().getValue(), 0);
+        assertEquals(sut.getTail().getValue(), 2);
+        assertEquals(sut.getLength(), 2);
+    }
+
+    @Test
+    public void test_remove_threeNodes_last() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+        sut.append(1);
+        sut.append(2);
+
+        // when
+        Node<Integer> removedNode = sut.remove(2);
+
+        // then
+        assertNotNull(removedNode);
+        assertEquals(removedNode.getValue(), 2);
+        assertEquals(sut.getHead().getValue(), 0);
+        assertEquals(sut.getTail().getValue(), 1);
+        assertEquals(sut.getLength(), 2);
+    }
+
 }
