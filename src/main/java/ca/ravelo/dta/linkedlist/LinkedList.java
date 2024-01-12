@@ -116,7 +116,7 @@ public class LinkedList<T> {
     //  * Has one or more nodes
     public Node<T> removeLast() {
 
-        // Set previous and current to point to the tail
+        // set previous and current to point to the tail
         Node<T> prev = head, curr = head;
         // if length is 0
         if (length == 0) {
@@ -143,6 +143,41 @@ public class LinkedList<T> {
         // remove the last node from LinkedList
         tail = prev;
         tail.setNext(null);
+
+        // decrease length
+        length--;
+
+        return curr;
+    }
+
+    // RemoveFirst disconnects the last
+    // node from the LinkedList and returns
+    // true on success O(1)
+    //
+    // Edge cases:
+    //  * Does not have any nodes
+    //  * Has one or more nodes
+    public Node<T> removeFirst() {
+        // set current to point to head
+        Node<T> curr = head;
+
+        // if length is 0
+        if (length == 0) {
+            // return current (must be null)
+            return curr;
+        } else if (length == 1) {
+            // set head and tail to null
+            head = tail = null;
+            // decrease length
+            length--;
+            // return current (must be only item)
+            return curr;
+        }
+
+        // set head to point to current.next
+        head = curr.getNext();
+        // set current.next to point to null
+        curr.setNext(null);
 
         // decrease length
         length--;
