@@ -229,4 +229,48 @@ public class LinkedList<T> {
         // return true if the value was updated
         return curr != null;
     }
+
+    // Insert Creates a new node and places it
+    // in between the given index and its
+    // predecessor O(n)
+    //
+    // Edge cases:
+    //  * index is out of bounds (i < 0 || length < i)
+    //  * Does not have any nodes
+    //  * Has one node
+    //  * has more than one node
+    public boolean insert(T value, int index) {
+        // if the index is out of bounds
+        if (index < 0 || length < index) {
+            // return false
+            return false;
+        }
+
+        // if the index is 0
+        if (index == 0) {
+            // prepend
+            prepend(value);
+            return true;
+        }
+
+        // if index equals the length append
+        if (index == length) {
+            // append
+            append(value);
+            return true;
+        }
+
+        // set previous to point to the predecessor
+        Node<T> prev = get(index - 1);
+        // set next to prev.next
+        Node<T> next = prev.getNext();
+        // set previous to newNode
+        prev.setNext(new Node<>(value));
+        // set newNode to point to next
+        prev.getNext().setNext(next);
+        // increase length
+        length++;
+
+        return true;
+    }
 }

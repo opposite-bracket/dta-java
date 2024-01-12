@@ -336,4 +336,87 @@ class LinkedListTest {
         assertEquals(sut.getTail().getValue(), 10);
     }
 
+    @Test
+    public void test_insert_indexLessThanZero() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>();
+
+        // when
+        boolean wasInserted = sut.insert(10, -1);
+
+        // then
+        assertFalse(wasInserted);
+        assertEquals(sut.getLength(), 0);
+    }
+
+    @Test
+    public void test_insert_greaterThanLength() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>();
+
+        // when
+        boolean wasInserted = sut.insert(10, sut.getLength() + 1);
+
+        // then
+        assertFalse(wasInserted);
+        assertEquals(sut.getLength(), 0);
+    }
+
+    @Test
+    public void test_insert_threeNodes_first() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+        sut.append(1);
+        sut.append(2);
+
+        // when
+        boolean wasInserted = sut.insert(10, 0);
+
+        // then
+        assertTrue(wasInserted);
+        assertEquals(sut.getHead().getValue(), 10);
+        assertEquals(sut.getHead().getNext().getValue(), 0);
+        assertEquals(sut.getHead().getNext().getNext().getValue(), 1);
+        assertEquals(sut.getTail().getValue(), 2);
+        assertEquals(sut.getLength(), 4);
+    }
+
+    @Test
+    public void test_insert_threeNodes_middle() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+        sut.append(1);
+        sut.append(2);
+
+        // when
+        boolean wasInserted = sut.insert(10, 1);
+
+        // then
+        assertTrue(wasInserted);
+        assertEquals(sut.getHead().getValue(), 0);
+        assertEquals(sut.getHead().getNext().getValue(), 10);
+        assertEquals(sut.getHead().getNext().getNext().getValue(), 1);
+        assertEquals(sut.getTail().getValue(), 2);
+        assertEquals(sut.getLength(), 4);
+    }
+
+    @Test
+    public void test_insert_threeNodes_last() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+        sut.append(1);
+        sut.append(2);
+
+        // when
+        boolean wasInserted = sut.insert(10, sut.getLength());
+
+        // then
+        assertTrue(wasInserted);
+        assertEquals(sut.getHead().getValue(), 0);
+        assertEquals(sut.getHead().getNext().getValue(), 1);
+        assertEquals(sut.getHead().getNext().getNext().getValue(), 2);
+        assertEquals(sut.getTail().getValue(), 10);
+        assertEquals(sut.getLength(), 4);
+    }
+
 }
