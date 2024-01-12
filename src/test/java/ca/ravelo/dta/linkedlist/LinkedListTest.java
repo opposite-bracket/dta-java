@@ -91,4 +91,49 @@ class LinkedListTest {
         assertEquals(sut.getLength(), 2);
     }
 
+    @Test
+    public void test_removeLast_noNodes() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>();
+
+        // when
+        Node<Integer> removedNode = sut.removeLast();
+
+        // then
+        assertNull(removedNode);
+    }
+
+    @Test
+    public void test_removeLast_oneNode() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+
+        // when
+        Node<Integer> removedNode = sut.removeLast();
+
+        // then
+        assertNotNull(removedNode);
+        assertEquals(removedNode.getValue(), 0);
+        assertNull(sut.getHead());
+        assertEquals(sut.getHead(), sut.getTail());
+        assertEquals(sut.getLength(), 0);
+    }
+
+    @Test
+    public void test_removeLast_twoNode() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+        sut.append(1);
+
+        // when
+        Node<Integer> removedNode = sut.removeLast();
+
+        // then
+        assertNotNull(removedNode);
+        assertEquals(removedNode.getValue(), 1);
+        assertNotNull(sut.getHead());
+        assertEquals(sut.getHead(), sut.getTail());
+        assertEquals(sut.getLength(), 1);
+    }
+
 }

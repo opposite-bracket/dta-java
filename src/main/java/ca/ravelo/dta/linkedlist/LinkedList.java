@@ -47,6 +47,15 @@ public class LinkedList<T> {
         return Objects.hash(head, tail, length);
     }
 
+    @Override
+    public String toString() {
+        return "LinkedList{" +
+                "head=" + head +
+                ", tail=" + tail +
+                ", length=" + length +
+                '}';
+    }
+
     // Append adds a node to the
     // end of the LinkedList O(1)
     //
@@ -96,5 +105,48 @@ public class LinkedList<T> {
 
         // increase length
         length++;
+    }
+
+    // RemoveLast disconnects the last
+    // node from the LinkedList and returns
+    // it O(n)
+    //
+    // Edge cases:
+    //  * Does not have any nodes
+    //  * Has one or more nodes
+    public Node<T> removeLast() {
+
+        // Set previous and current to point to the tail
+        Node<T> prev = head, curr = head;
+        // if length is 0
+        if (length == 0) {
+            // return current (which must be null)
+            return curr;
+        }
+
+        // if there is one
+        if (length == 1) {
+            // set head and tail to null
+            head = tail = null;
+            length--;
+            return curr;
+        }
+
+        // otherwise, navigate until current.next is null
+        while (curr.getNext() != null) {
+            // set before to point current
+            prev = curr;
+            // set current to current.next
+            curr = curr.getNext();
+        }
+
+        // remove the last node from LinkedList
+        tail = prev;
+        tail.setNext(null);
+
+        // decrease length
+        length--;
+
+        return curr;
     }
 }
