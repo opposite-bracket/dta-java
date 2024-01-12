@@ -183,4 +183,81 @@ class LinkedListTest {
         assertEquals(sut.getHead(), sut.getTail());
         assertEquals(sut.getLength(), 1);
     }
+
+    @Test
+    public void test_get_underZeroIndex() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>();
+
+        // when
+        Node<Integer> foundNode = sut.get(-1);
+
+        // then
+        assertNull(foundNode);
+    }
+
+    @Test
+    public void test_get_equalsLength() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+
+        // when
+        Node<Integer> foundNode = sut.get(sut.getLength());
+
+        // then
+        assertNull(foundNode);
+    }
+
+    @Test
+    public void test_get_greaterThanLength() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+
+        // when
+        Node<Integer> foundNode = sut.get(sut.getLength() + 1);
+
+        // then
+        assertNull(foundNode);
+    }
+
+
+    @Test
+    public void test_get_noNodes() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>();
+
+        // when
+        Node<Integer> foundNode = sut.get(0);
+
+        // then
+        assertNull(foundNode);
+    }
+
+    @Test
+    public void test_get_oneNode() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+
+        // when
+        Node<Integer> foundNode = sut.get(0);
+
+        // then
+        assertNotNull(foundNode);
+        assertEquals(foundNode.getValue(), 0);
+    }
+
+    @Test
+    public void test_get_twoNodes() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+        sut.append(1);
+
+        // when
+        Node<Integer> foundNode = sut.get(1);
+
+        // then
+        assertNotNull(foundNode);
+        assertEquals(foundNode.getValue(), 1);
+        assertEquals(foundNode, sut.getTail());
+    }
 }

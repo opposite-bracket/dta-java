@@ -184,4 +184,29 @@ public class LinkedList<T> {
 
         return curr;
     }
+
+    // Get retrieves the element found in the
+    // given 0-based index O(n)
+    //
+    // Edge cases:
+    //  * index is out of bounds (i < 0 || length <= i)
+    //  * Does not have any nodes
+    //  * Has one or more nodes
+    public Node<T> get(int index) {
+        // set current to head
+        Node<T> curr = head;
+        // index is out of bounds
+        if (index < 0 || length <= index) {
+            return null;
+        }
+
+        // navigate to the desired index
+        for (int i = 0; i < index; i++) {
+            // update current pointer
+            curr = curr.getNext();
+        }
+
+        // return current
+        return curr;
+    }
 }
