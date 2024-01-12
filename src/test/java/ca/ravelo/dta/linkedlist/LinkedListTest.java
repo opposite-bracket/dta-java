@@ -509,4 +509,47 @@ class LinkedListTest {
         assertEquals(sut.getLength(), 2);
     }
 
+    @Test
+    public void test_reverse_noNodes() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>();
+
+        // when
+        sut.reverse();
+
+        // then
+        assertNull(sut.getHead());
+        assertEquals(sut.getHead(), sut.getTail());
+    }
+
+    @Test
+    public void test_reverse_oneNode() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+        sut.append(1);
+
+        // when
+        sut.reverse();
+
+        // then
+        assertEquals(sut.getHead().getValue(), 1);
+        assertEquals(sut.getTail().getValue(), 0);
+    }
+
+    @Test
+    public void test_reverse_threeNodes() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+        sut.append(1);
+        sut.append(2);
+
+        // when
+        sut.reverse();
+
+        // then
+        assertEquals(sut.getHead().getValue(), 2);
+        assertEquals(sut.getHead().getNext().getValue(), 1);
+        assertEquals(sut.getTail().getValue(), 0);
+    }
+
 }

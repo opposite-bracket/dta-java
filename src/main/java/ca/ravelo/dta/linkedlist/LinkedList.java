@@ -314,4 +314,44 @@ public class LinkedList<T> {
 
         return curr;
     }
+
+    // Reverse shifts the order
+    // of a LinkList O(n)
+    //
+    // Edge cases:
+    //  * Does not have any nodes
+    //  * Has one or more nodes
+    public void reverse() {
+
+        // if length is 0
+        if (length == 0) {
+            // do nothing
+            return;
+        }
+
+        // set previous to null
+        Node<T> prev = null;
+        // set current and next to head
+        Node<T> current = head;
+        Node<T> next = head;
+
+        // flip head to tails
+        head = tail;
+        // set tails to point to current
+        // (which must be head)
+        tail = current;
+
+        // loop until next is null
+        while(next != null) {
+            // move next to point to the following node
+            next = current.getNext();
+            // flip current to point backwards
+            current.setNext(prev);
+            // move previous to the current node
+            prev = current;
+            // move current to current.next
+            current = next;
+        }
+    }
+
 }
