@@ -185,7 +185,7 @@ public class LinkedList<T> {
         return curr;
     }
 
-    // Get retrieves the element found in the
+    // Get retrieves the node found in the
     // given 0-based index O(n)
     //
     // Edge cases:
@@ -208,5 +208,25 @@ public class LinkedList<T> {
 
         // return current
         return curr;
+    }
+
+    // Set updates the value of a node found in the
+    // given 0-based index O(n)
+    //
+    // Edge cases:
+    //  * index is out of bounds (i < 0 || length <= i)
+    //  * Does not have any nodes
+    //  * Has one or more nodes
+    public boolean set(T value, int index) {
+        // set current to point to node in index
+        Node<T> curr = get(index);
+        // if current is not null
+        if (curr != null) {
+            // update current value
+            curr.setValue(value);
+        }
+
+        // return true if the value was updated
+        return curr != null;
     }
 }

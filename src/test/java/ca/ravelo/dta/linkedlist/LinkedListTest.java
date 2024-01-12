@@ -260,4 +260,80 @@ class LinkedListTest {
         assertEquals(foundNode.getValue(), 1);
         assertEquals(foundNode, sut.getTail());
     }
+
+    @Test
+    public void test_set_lessThanZero() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>();
+
+        // when
+        boolean wasSet = sut.set(1, -1);
+
+        // then
+        assertFalse(wasSet);
+    }
+
+    @Test
+    public void test_set_equalsToLength() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>();
+
+        // when
+        boolean wasSet = sut.set(1, sut.getLength());
+
+        // then
+        assertFalse(wasSet);
+    }
+
+    @Test
+    public void test_set_greaterThanLength() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>();
+
+        // when
+        boolean wasSet = sut.set(1, sut.getLength() + 1);
+
+        // then
+        assertFalse(wasSet);
+    }
+
+    @Test
+    public void test_set_noNodes() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>();
+
+        // when
+        boolean wasSet = sut.set(1, 0);
+
+        // then
+        assertFalse(wasSet);
+    }
+
+    @Test
+    public void test_set_oneNode() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+
+        // when
+        boolean wasSet = sut.set(10, 0);
+
+        // then
+        assertTrue(wasSet);
+        assertEquals(sut.getHead().getValue(), 10);
+    }
+
+    @Test
+    public void test_set_twoNodes() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+        sut.append(1);
+
+        // when
+        boolean wasSet = sut.set(10, 1);
+
+        // then
+        assertTrue(wasSet);
+        assertEquals(sut.getTail().getValue(), 10);
+    }
+
 }
