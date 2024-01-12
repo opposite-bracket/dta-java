@@ -60,4 +60,35 @@ class LinkedListTest {
         assertEquals(sut.getLength(), 2);
     }
 
+    @Test
+    public void test_prepend_noNodes() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>();
+
+        // when
+        sut.prepend(0);
+
+        // then
+        assertNotNull(sut.getHead());
+        assertEquals(sut.getHead().getValue(), 0);
+        assertEquals(sut.getHead(), sut.getTail());
+        assertEquals(sut.getLength(), 1);
+    }
+
+    @Test
+    public void test_prepend_oneNode() {
+        // given
+        LinkedList<Integer> sut = new LinkedList<>();
+
+        // when
+        sut.prepend(0);
+        sut.prepend(1);
+
+        // then
+        assertNotNull(sut.getHead());
+        assertEquals(sut.getHead().getValue(), 1);
+        assertEquals(sut.getTail().getValue(), 0);
+        assertEquals(sut.getLength(), 2);
+    }
+
 }

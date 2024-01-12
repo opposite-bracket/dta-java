@@ -71,4 +71,30 @@ public class LinkedList<T> {
         // increase length
         length++;
     }
+
+
+    // Prepend adds a node to the
+    // beginning of the LinkedList O(1)
+    //
+    // Edge cases:
+    //  * Does not have any nodes
+    //  * Has one or more nodes
+    public void prepend(T value) {
+        // create newNode
+        Node<T> newNode = new Node<>(value);
+
+        // if LinkedList is empty
+        if (length == 0) {
+            // set newNode to point to head and tail
+            head = tail = newNode;
+        } else {
+            // set newNode.next to point to head
+            newNode.setNext(head);
+            // set head to point to newNode
+            head = newNode;
+        }
+
+        // increase length
+        length++;
+    }
 }
