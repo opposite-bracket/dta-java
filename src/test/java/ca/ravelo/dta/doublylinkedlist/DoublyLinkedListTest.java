@@ -226,4 +226,99 @@ class DoublyLinkedListTest {
 
         assertEquals(sut.getLength(), 1);
     }
+
+    @Test
+    public void test_get_underZeroIndex() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+
+        // when
+        Node<Integer> foundNode = sut.get(-1);
+
+        // then
+        assertNull(foundNode);
+    }
+
+    @Test
+    public void test_get_equalsLength() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>(0);
+
+        // when
+        Node<Integer> foundNode = sut.get(sut.getLength());
+
+        // then
+        assertNull(foundNode);
+    }
+
+    @Test
+    public void test_get_greaterThanLength() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>(0);
+
+        // when
+        Node<Integer> foundNode = sut.get(sut.getLength() + 1);
+
+        // then
+        assertNull(foundNode);
+    }
+
+    @Test
+    public void test_get_noNodes() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+
+        // when
+        Node<Integer> foundNode = sut.get(0);
+
+        // then
+        assertNull(foundNode);
+    }
+
+    @Test
+    public void test_get_oneNode() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>(0);
+
+        // when
+        Node<Integer> foundNode = sut.get(0);
+
+        // then
+        assertNotNull(foundNode);
+        assertEquals(foundNode.getValue(), 0);
+    }
+
+    @Test
+    public void test_get_firstHalf() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>(0);
+        sut.append(1);
+        sut.append(2);
+        sut.append(3);
+        sut.append(4);
+
+        // when
+        Node<Integer> foundNode = sut.get(1);
+
+        // then
+        assertNotNull(foundNode);
+        assertEquals(foundNode.getValue(), 1);
+    }
+
+    @Test
+    public void test_get_secondHalf() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>(0);
+        sut.append(1);
+        sut.append(2);
+        sut.append(3);
+        sut.append(4);
+
+        // when
+        Node<Integer> foundNode = sut.get(3);
+
+        // then
+        assertNotNull(foundNode);
+        assertEquals(foundNode.getValue(), 3);
+    }
 }

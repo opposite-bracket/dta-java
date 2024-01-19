@@ -193,4 +193,42 @@ public class DoublyLinkedList<T> {
 
         return curr;
     }
+
+    // Get retrieves the node found in the
+    // given 0-based index O(log n)
+    //
+    // Edge cases:
+    //  * index is out of bounds (i < 0 || length <= i)
+    //  * Does not have any nodes
+    //  * Has one
+    //  * Has more than one node
+    //  * navigate forwards if the node is in the first
+    //    half, otherwise, walk backwards
+    public Node<T> get(int index) {
+        // set current to head
+        Node<T> curr = this.head;
+
+        // index is out of bounds
+        if (index < 0 || length <= index) {
+            return null;
+        }
+
+        // if index is on the first half
+        if (index < length / 2) {
+            // navigate forward until node is found
+            for (int i = 0; i < index; i++) {
+                curr = curr.getNext();
+            }
+        } else {
+            // set current to point to tail
+            curr = this.tail;
+
+            // navigate backwards until node is found
+            for (int i = length - 1; i > index; i--) {
+                curr = curr.getPrev();
+            }
+        }
+
+        return curr;
+    }
 }
