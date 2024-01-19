@@ -57,4 +57,33 @@ public class DoublyLinkedList<T> {
                 ", length=" + length +
                 '}';
     }
+
+    // Append adds a node to the
+    // end of the DoubleLinkedList O(1)
+    //
+    // Edge cases
+    //
+    // Edge cases:
+    //  * Does not have any nodes
+    //  * Has one or more nodes
+    public void append(T value) {
+        // create new node
+        Node<T> newNode = new Node<>(value);
+
+        // if there are no nodes
+        if (length == 0) {
+            // set head and tail to it
+            head = tail = newNode;
+        } else {
+            // set tail.next to point to newNode
+            tail.setNext(newNode);
+            // set newNode.prev to point to tail
+            newNode.setPrev(tail);
+            // set tail to the new node
+            tail = newNode;
+        }
+
+        // set tail to point to node
+        length++;
+    }
 }
