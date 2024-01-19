@@ -69,4 +69,43 @@ class DoublyLinkedListTest {
         assertEquals(sut.getLength(), 2);
     }
 
+    @Test
+    public void test_prepend_noNodes() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+
+        // when
+        sut.prepend(0);
+
+        // then
+        assertNotNull(sut.getHead());
+        assertEquals(sut.getHead().getValue(), 0);
+        assertEquals(sut.getHead(), sut.getTail());
+        assertEquals(sut.getLength(), 1);
+    }
+
+    @Test
+    public void test_prepend_oneNode() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+
+        // when
+        sut.prepend(0);
+        sut.prepend(1);
+
+        // then
+        assertNotNull(sut.getHead());
+        assertNotNull(sut.getTail());
+
+        assertNull(sut.getHead().getPrev());
+        assertNull(sut.getTail().getNext());
+
+        assertEquals(sut.getHead().getValue(), 1);
+        assertEquals(sut.getTail().getValue(), 0);
+
+        assertEquals(sut.getHead().getNext(), sut.getTail());
+        assertEquals(sut.getTail().getPrev(), sut.getHead());
+
+        assertEquals(sut.getLength(), 2);
+    }
 }

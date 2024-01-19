@@ -86,4 +86,32 @@ public class DoublyLinkedList<T> {
         // set tail to point to node
         length++;
     }
+
+    // Prepend adds a node to the
+    // beginning of the DoublyLinkedList O(1)
+    //
+    // Edge cases:
+    //  * Does not have any nodes
+    //  * Has one or more nodes
+    public void prepend(T value) {
+        // create newNode
+        Node<T> newNode = new Node<>(value);
+
+        // if there are no nodes
+        if (length == 0) {
+            // set newNode to point to head and tail
+            head = tail = newNode;
+        } else {
+            // set newNode.next to point to head
+            newNode.setNext(head);
+            // set head.next to point to newNode
+            head.setPrev(newNode);
+            // set head to point to newNode
+            head = newNode;
+        }
+
+        // increase length
+        length++;
+    }
+
 }
