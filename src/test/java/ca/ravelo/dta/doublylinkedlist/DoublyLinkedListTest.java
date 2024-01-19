@@ -321,4 +321,43 @@ class DoublyLinkedListTest {
         assertNotNull(foundNode);
         assertEquals(foundNode.getValue(), 3);
     }
+
+    @Test
+    public void test_set_noNodes() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+
+        // when
+        boolean wasSet = sut.set(1, 0);
+
+        // then
+        assertFalse(wasSet);
+    }
+
+    @Test
+    public void test_set_oneNode() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>(0);
+
+        // when
+        boolean wasSet = sut.set(10, 0);
+
+        // then
+        assertTrue(wasSet);
+        assertEquals(sut.getHead().getValue(), 10);
+    }
+
+    @Test
+    public void test_set_twoNodes() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>(0);
+        sut.append(1);
+
+        // when
+        boolean wasSet = sut.set(10, 1);
+
+        // then
+        assertTrue(wasSet);
+        assertEquals(sut.getTail().getValue(), 10);
+    }
 }

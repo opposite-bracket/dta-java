@@ -231,4 +231,20 @@ public class DoublyLinkedList<T> {
 
         return curr;
     }
+
+    // Get retrieves the node found in the
+    // given 0-based index O(log n)
+    //
+    // Edge cases:
+    //  * index is out of bounds (i < 0 || length <= i)
+    //  * Does not have any nodes
+    //  * Has one or more nodes
+    public boolean set(T value, int index) {
+        Node<T> curr = get(index);
+        boolean isFound = curr != null;
+        if (isFound) curr.setValue(value);
+
+        return isFound;
+    }
+
 }
