@@ -247,4 +247,60 @@ public class DoublyLinkedList<T> {
         return isFound;
     }
 
+    // Insert, creates a new node and places it in between
+    // the given index and its predecessor O(log n)
+    //
+    // Edge cases:
+    //  * index is out of bounds (index < 0 || length < index)
+    //  * Does not have any nodes
+    //  * has nodes:
+    //  *   append
+    //  *   prepend
+    //  *   insert in the middle
+    public boolean insert(T value, int index){
+        // return false if out of bounds
+        if (index < 0 || length < index) return false;
+
+        // prepend if index is 0
+        if (index == 0) {
+            prepend(value);
+            return true;
+        }
+
+        // prepend if index equals length
+        if (index == length) {
+            append(value);
+            return true;
+        }
+
+        // create newNode
+        Node<T> newNode = new Node<>(value);
+
+        // get the predecessor (current.prev) to the node
+        // in the given index (current)
+        Node<T> curr = get(index);
+
+        // set newNode.next to point to the node in the
+        // given index (current)
+        newNode.setNext(curr);
+
+        // set newNode.prev to point to the
+        // predecessor (current.prev) to the node
+        // in the given position (curr)
+        newNode.setPrev(curr.getPrev());
+
+        // set predecessor (current.prev.next)
+        // to point to the new node
+        curr.getPrev().setNext(newNode);
+
+        // set the pushed node to point to newNode
+        curr.setPrev(newNode);
+
+        // set pre
+
+        length++;
+
+        return true;
+    }
+
 }
