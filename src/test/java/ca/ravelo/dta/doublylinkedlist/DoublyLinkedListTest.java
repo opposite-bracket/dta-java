@@ -451,4 +451,115 @@ class DoublyLinkedListTest {
         assertEquals(sut.getTail().getValue(), 10);
         assertEquals(sut.getLength(), 4);
     }
+
+    @Test
+    public void test_remove_indexLessThanZero() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+
+        // when
+        Node<Integer> removedNode = sut.remove(-1);
+
+        // then
+        assertNull(removedNode);
+    }
+
+    @Test
+    public void test_remove_equalToLength() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+
+        // when
+        Node<Integer> removedNode = sut.remove(sut.getLength());
+
+        // then
+        assertNull(removedNode);
+    }
+
+    @Test
+    public void test_remove_greaterThanLength() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+
+        // when
+        Node<Integer> removedNode = sut.remove(sut.getLength() + 1);
+
+        // then
+        assertNull(removedNode);
+    }
+
+    @Test
+    public void test_remove_threeNodes_first() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>(0);
+        sut.append(1);
+        sut.append(2);
+
+        // when
+        Node<Integer> removedNode = sut.remove(0);
+
+        // then
+        assertNotNull(removedNode);
+        assertNull(removedNode.getPrev());
+        assertNull(removedNode.getNext());
+
+        assertEquals(removedNode.getValue(), 0);
+
+        assertNull(sut.getHead().getPrev());
+
+        assertEquals(sut.getHead().getValue(), 1);
+        assertEquals(sut.getTail().getValue(), 2);
+
+        assertEquals(sut.getLength(), 2);
+    }
+
+    @Test
+    public void test_remove_threeNodes_middle() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>(0);
+        sut.append(1);
+        sut.append(2);
+
+        // when
+        Node<Integer> removedNode = sut.remove(1);
+
+        // then
+        assertNotNull(removedNode);
+        assertNull(removedNode.getPrev());
+        assertNull(removedNode.getNext());
+
+        assertEquals(removedNode.getValue(), 1);
+
+        assertEquals(sut.getHead().getValue(), 0);
+        assertEquals(sut.getTail().getValue(), 2);
+
+        assertEquals(sut.getHead().getNext(), sut.getTail());
+        assertEquals(sut.getTail().getPrev(), sut.getHead());
+
+        assertEquals(sut.getLength(), 2);
+    }
+
+    @Test
+    public void test_remove_threeNodes_last() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>(0);
+        sut.append(1);
+        sut.append(2);
+
+        // when
+        Node<Integer> removedNode = sut.remove(2);
+
+        // then
+        assertNotNull(removedNode);
+        assertNull(removedNode.getPrev());
+        assertNull(removedNode.getNext());
+
+        assertEquals(removedNode.getValue(), 2);
+
+        assertEquals(sut.getHead().getValue(), 0);
+        assertEquals(sut.getTail().getValue(), 1);
+
+        assertEquals(sut.getLength(), 2);
+    }
+
 }

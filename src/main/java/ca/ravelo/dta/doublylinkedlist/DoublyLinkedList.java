@@ -303,4 +303,52 @@ public class DoublyLinkedList<T> {
         return true;
     }
 
+    // Removes an item from a given position.
+    //
+    // Edge cases:
+    //  * index is out of bounds (index < 0 || length < index)
+    //  * Does not have any nodes
+    //  * has nodes:
+    //  *   removeLast
+    //  *   removeFirst
+    //  *   remove in the middle
+    public Node<T> remove(int index) {
+        // do nothing when out of bounds
+        if (index < 0 || length <= index) {
+            return null;
+        }
+
+        // if index points to the first item
+        if (index == 0) {
+            // remove first
+            return removeFirst();
+        }
+
+        // if index points to the last item
+        if ( index == length - 1 ) {
+            // remove last
+            return removeLast();
+        }
+
+        // get node to be removed
+        Node<T> curr = get(index);
+
+        // set the predecessor (curr.prev)
+        // to the next item to the one
+        // being removed (current.next)
+        curr.getPrev().setNext(curr.getNext());
+
+        // set the next item to the one
+        // being removed (next.prev)
+        // to point to the predecessor (prev)
+        curr.getNext().setPrev(curr.getPrev());
+
+        // disconnect node to remove (current
+        curr.setPrev(null);
+        curr.setNext(null);
+
+        length--;
+
+        return curr;
+    }
 }
