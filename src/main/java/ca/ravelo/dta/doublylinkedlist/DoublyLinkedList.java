@@ -114,4 +114,47 @@ public class DoublyLinkedList<T> {
         length++;
     }
 
+    // RemoveLast disconnects the last
+    // node from the DoublyLinkedList
+    // and returns it O(n)
+    //
+    // Edge cases:
+    //  * Does not have any nodes
+    //  * Has one or more nodes
+    public Node<T> removeLast() {
+        // set previous and current to point to the tail
+        Node<T> prev = head, curr = head;
+        // if length is 0
+        if (length == 0) {
+            // return current (which must be null)
+            return curr;
+        }
+
+        // if there is one
+        if (length == 1) {
+            // set head and tail to null
+            head = tail = null;
+            length--;
+            return curr;
+        }
+
+        // otherwise, navigate until current.next is null
+        while (curr.getNext() != null) {
+            // set before to point current
+            prev = curr;
+            // set current to current.next
+            curr = curr.getNext();
+        }
+
+        // remove the last node
+        tail = prev;
+        tail.setNext(null);
+        curr.setPrev(null);
+
+        // decrease length
+        length--;
+
+        return curr;
+    }
+
 }
