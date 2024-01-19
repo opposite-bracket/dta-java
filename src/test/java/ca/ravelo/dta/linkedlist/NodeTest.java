@@ -17,7 +17,7 @@ class NodeTest {
     }
 
     @Test
-    void setValue() {
+    void test_setValue() {
         // given
         Node<Integer> sut = new Node<>(1);
 
@@ -32,7 +32,7 @@ class NodeTest {
     }
 
     @Test
-    void setNext() {
+    void test_setNext() {
         // given
         Node<Integer> sut = new Node<>(1);
 

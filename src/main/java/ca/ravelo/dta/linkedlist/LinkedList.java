@@ -47,6 +47,7 @@ public class LinkedList<T> {
         return Objects.hash(head, tail, length);
     }
 
+    // O(1)
     @Override
     public String toString() {
         return "LinkedList{" +
