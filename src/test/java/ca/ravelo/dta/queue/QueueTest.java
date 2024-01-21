@@ -89,4 +89,57 @@ class QueueTest {
         assertEquals(sut.getLength(), 3);
     }
 
+    @Test
+    public void test_dequeue_noNodes() {
+        // given
+        Queue<Integer> sut = new Queue<>();
+
+        // when
+        Node<Integer> dequeued = sut.dequeue();
+
+        // then
+        assertNull(dequeued);
+    }
+
+    @Test
+    public void test_dequeue_oneNode() {
+        // given
+        Queue<Integer> sut = new Queue<>(0);
+
+        // when
+        Node<Integer> dequeued = sut.dequeue();
+
+        // then
+        assertNotNull(dequeued);
+
+        assertNull(sut.getFirst());
+        assertNull(sut.getLast());
+
+        assertEquals(dequeued.getValue(), 0);
+
+        assertEquals(sut.getLength(), 0);
+    }
+
+    @Test
+    public void test_dequeue_twoNodes() {
+        // given
+        Queue<Integer> sut = new Queue<>(0);
+        sut.enqueue(1);
+
+        // when
+        Node<Integer> dequeued = sut.dequeue();
+
+        // then
+        assertNotNull(dequeued);
+
+        assertNotNull(sut.getFirst());
+        assertNotNull(sut.getLast());
+        assertEquals(sut.getFirst(), sut.getLast());
+
+        assertEquals(dequeued.getValue(), 0);
+        assertEquals(sut.getFirst().getValue(), 1);
+        assertEquals(sut.getLast().getValue(), 1);
+
+        assertEquals(sut.getLength(), 1);
+    }
 }

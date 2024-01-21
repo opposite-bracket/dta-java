@@ -83,4 +83,42 @@ public class Queue<T> {
         // increase length
         length++;
     }
+
+    // dequeue removes a node from the
+    // beginning (first) of the queue O(1)
+    //
+    // Edge cases:
+    //  * Does not have any nodes
+    //  * Has one or more nodes
+    public Node<T> dequeue() {
+        // Set current to point to the first node
+        Node<T> curr = first;
+
+        // if there are no nodes
+        if (length == 0) {
+            // return current which is null
+            return curr;
+        }
+
+        // if there is one node
+        if (length == 1) {
+            // set both first and last to null
+            first = last = null;
+        }
+
+        // if it's more than one
+        if (1 < length) {
+            // set first to point to first.next
+            first = first.getNext();
+
+            // set current.next to null
+            curr.setNext(null);
+        }
+
+        // decrease length
+        length--;
+
+        // return current
+        return curr;
+    }
 }
