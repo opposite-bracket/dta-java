@@ -57,4 +57,30 @@ public class Queue<T> {
                 ", length=" + length +
                 '}';
     }
+
+    // enqueue Adds a node as the
+    // end (last) of the queue O(1)
+    //
+    // Edge cases:
+    //  * Does not have any nodes
+    //  * Has one or more nodes
+    public void enqueue(T value) {
+        // create a new node
+        Node<T> newNode = new Node<>(value);
+
+        // if there are no items
+        if (length == 0) {
+            // assign the node to the first and last
+            first = last = newNode;
+        } else {
+            // Set last.next to point to newNode
+            last.setNext(newNode);
+
+            // Set last to point to newNode
+            last = newNode;
+        }
+
+        // increase length
+        length++;
+    }
 }
