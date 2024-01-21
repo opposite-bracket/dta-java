@@ -27,4 +27,33 @@ public class StackTest {
         assertEquals(sut.getHeight(), 1);
     }
 
+    @Test
+    public void test_push_noNodes() {
+        // given
+        Stack<Integer> sut = new Stack<>();
+
+        // when
+        sut.push(0);
+
+        // then
+        assertNull(sut.getTop().getNext());
+        assertEquals(sut.getTop().getValue(), 0);
+        assertEquals(sut.getHeight(), 1);
+
+    }
+
+    @Test
+    public void test_push_oneNode() {
+        // given
+        Stack<Integer> sut = new Stack<>(0);
+
+        // when
+        sut.push(1);
+
+        // then
+        assertNotNull(sut.getTop().getNext());
+        assertEquals(sut.getTop().getValue(), 1);
+        assertEquals(sut.getHeight(), 2);
+    }
+
 }

@@ -41,4 +41,27 @@ public class Stack<T> {
                 ", height=" + height +
                 '}';
     }
+
+    // pushes an item to the
+    // top of the stack O(1)
+    //
+    // Edge cases:
+    //  * Does not have any nodes
+    //  * Has one or more nodes
+    public void push(T value) {
+        // create a new node
+        Node<T> newNode = new Node<>(value);
+
+        // if there are nodes
+        if (0 < height) {
+            // set newNode.next to point to the top
+            newNode.setNext(top);
+        }
+
+        // set top to point to the new node
+        top = newNode;
+
+        // increase height
+        height++;
+    }
 }
