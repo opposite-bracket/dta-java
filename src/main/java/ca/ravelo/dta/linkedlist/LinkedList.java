@@ -355,4 +355,20 @@ public class LinkedList<T> {
         }
     }
 
+    // O(log n)
+    public Node<T> tortoiseHareFindMiddleNode() {
+        Node<T> tortoise = head;
+        Node<T> hare = head;
+
+        if (tortoise == null) {
+            return tortoise;
+        }
+
+        while(hare != null && hare.getNext() != null) {
+            tortoise = tortoise.getNext();
+            hare = hare.getNext().getNext();
+        }
+
+        return tortoise;
+    }
 }

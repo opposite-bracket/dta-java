@@ -552,4 +552,47 @@ class LinkedListTest {
         assertEquals(sut.getTail().getValue(), 0);
     }
 
+    @Test
+    public void test_tortoiseHareFindMiddleNode_noItems(){
+        // given
+        LinkedList<Integer> sut = new LinkedList<>();
+
+        // when
+        Node<Integer> actual = sut.tortoiseHareFindMiddleNode();
+
+        // then
+        assertNull(actual);
+    }
+
+    @Test
+    public void test_tortoiseHareFindMiddleNode_evenItems(){
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+        sut.append(1);
+        sut.append(2);
+        sut.append(3);
+
+        // when
+        Node<Integer> actual = sut.tortoiseHareFindMiddleNode();
+
+        // then
+        assertEquals(2, actual.getValue());
+    }
+
+    @Test
+    public void test_tortoiseHareFindMiddleNode_oddItems(){
+        // given
+        LinkedList<Integer> sut = new LinkedList<>(0);
+        sut.append(1);
+        sut.append(2);
+        sut.append(3);
+        sut.append(4);
+
+        // when
+        Node<Integer> actual = sut.tortoiseHareFindMiddleNode();
+
+        // then
+        assertEquals(2, actual.getValue());
+    }
+
 }
