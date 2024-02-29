@@ -54,12 +54,6 @@ public class Node<T> {
 
     // O(1)
     @Override
-    public int hashCode() {
-        return Objects.hash(value, left, right);
-    }
-
-    // O(1)
-    @Override
     public String toString() {
         return "Node{" +
                 "value=" + value +

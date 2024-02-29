@@ -24,12 +24,6 @@ public class BinarySearchTree<T> {
 
     // O(1)
     @Override
-    public int hashCode() {
-        return Objects.hash(root);
-    }
-
-    // O(1)
-    @Override
     public String toString() {
         return "BinarySearchTree{" +
                 "root=" + root +

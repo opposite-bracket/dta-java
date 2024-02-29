@@ -30,11 +30,6 @@ public class Stack<T> {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(top, height);
-    }
-
-    @Override
     public String toString() {
         return "Stack{" +
                 "top=" + top +
