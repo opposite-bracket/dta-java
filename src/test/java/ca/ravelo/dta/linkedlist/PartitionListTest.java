@@ -10,12 +10,12 @@ class PartitionListTest {
     public void test_scenario1() {
 
         // given
-        PartitionList.ListNode n1 = new PartitionList.ListNode(1);
-        PartitionList.ListNode n2 = new PartitionList.ListNode(4);
-        PartitionList.ListNode n3 = new PartitionList.ListNode(3);
-        PartitionList.ListNode n4 = new PartitionList.ListNode(2);
-        PartitionList.ListNode n5 = new PartitionList.ListNode(5);
-        PartitionList.ListNode n6 = new PartitionList.ListNode(2);
+        ListNode n1 = new ListNode(1);
+        ListNode n2 = new ListNode(4);
+        ListNode n3 = new ListNode(3);
+        ListNode n4 = new ListNode(2);
+        ListNode n5 = new ListNode(5);
+        ListNode n6 = new ListNode(2);
 
         // Input: head = [1,4,3,2,5,2], x = 3
         n1.next = n2;
@@ -25,7 +25,7 @@ class PartitionListTest {
         n5.next = n6;
 
         // when
-        PartitionList.ListNode newHead = PartitionList.partition(n1, 3);
+        ListNode newHead = PartitionList.partition(n1, 3);
 
         // then
         // Output: [1,2,2,4,3,5]
@@ -40,14 +40,14 @@ class PartitionListTest {
     public void test_scenario2() {
 
         // given
-        PartitionList.ListNode n1 = new PartitionList.ListNode(2);
-        PartitionList.ListNode n2 = new PartitionList.ListNode(1);
+        ListNode n1 = new ListNode(2);
+        ListNode n2 = new ListNode(1);
 
         // Input: head = [2,1], x = 2
         n1.next = n2;
 
         // when
-        PartitionList.ListNode newHead = PartitionList.partition(n1, 2);
+        ListNode newHead = PartitionList.partition(n1, 2);
 
         // then
         // Output: [1,2]
