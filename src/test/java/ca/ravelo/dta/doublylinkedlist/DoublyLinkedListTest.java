@@ -562,4 +562,181 @@ class DoublyLinkedListTest {
         assertEquals(sut.getLength(), 2);
     }
 
+    @Test
+    public void test_swapFirstLast_null() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+
+        // when
+        sut.swapFirstLast();
+
+        // then
+        assertNull(sut.getHead());
+        assertNull(sut.getTail());
+    }
+
+    @Test
+    public void test_swapFirstLast_OneNode(){
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+        sut.append(0);
+
+        // when
+        sut.swapFirstLast();
+
+        // then
+        assertNotNull(sut.getHead());
+        assertNotNull(sut.getTail());
+        assertEquals(0, sut.getHead().getValue());
+        assertEquals(0, sut.getTail().getValue());
+    }
+
+    @Test
+    public void test_swapFirstLast_TwoNodes(){
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+        sut.append(0);
+        sut.append(1);
+
+        // when
+        sut.swapFirstLast();
+
+        // then
+        assertNotNull(sut.getHead());
+        assertNotNull(sut.getTail());
+        assertEquals(1, sut.getHead().getValue());
+        assertEquals(0, sut.getTail().getValue());
+    }
+
+    @Test
+    public void test_swapFirstLast_MoreThanTwoNodes(){
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+        sut.append(0);
+        sut.append(1);
+        sut.append(2);
+        sut.append(3);
+
+        // when
+        sut.swapFirstLast();
+
+        // then
+        assertNotNull(sut.getHead());
+        assertNotNull(sut.getTail());
+        assertEquals(3, sut.getHead().getValue());
+        assertEquals(0, sut.getTail().getValue());
+    }
+
+    @Test
+    public void test_reverse_noItems() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+
+        // when
+        sut.reverse();
+
+        // then
+        assertNull(sut.getHead());
+        assertNull(sut.getTail());
+    }
+
+    @Test
+    public void test_reverse_OneItem() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+        sut.append(0);
+
+        // when
+        sut.reverse();
+
+        // then
+        assertNotNull(sut.getHead());
+        assertNotNull(sut.getTail());
+        assertEquals(0, sut.getHead().getValue());
+        assertEquals(0, sut.getTail().getValue());
+    }
+
+    @Test
+    public void test_reverse_twoItems() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+        sut.append(0);
+        sut.append(1);
+
+        // when
+        sut.reverse();
+
+        // then
+        assertNotNull(sut.getHead());
+        assertNotNull(sut.getTail());
+        assertEquals(1, sut.getHead().getValue());
+        assertEquals(0, sut.getHead().getNext().getValue());
+        assertEquals(0, sut.getTail().getValue());
+        assertEquals(1, sut.getTail().getPrev().getValue());
+    }
+
+    @Test
+    public void test_reverse_moreThanTwoItems() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+        sut.append(0);
+        sut.append(1);
+        sut.append(2);
+        sut.append(3);
+
+        // when
+        sut.reverse();
+
+        // then
+        assertNotNull(sut.getHead());
+        assertNotNull(sut.getTail());
+        assertEquals(3, sut.getHead().getValue());
+        assertEquals(2, sut.getHead().getNext().getValue());
+        assertEquals(1, sut.getHead().getNext().getNext().getValue());
+        assertEquals(0, sut.getHead().getNext().getNext().getNext().getValue());
+        assertEquals(0, sut.getTail().getValue());
+        assertEquals(1, sut.getTail().getPrev().getValue());
+        assertEquals(2, sut.getTail().getPrev().getPrev().getValue());
+        assertEquals(3, sut.getTail().getPrev().getPrev().getPrev().getValue());
+    }
+
+    @Test
+    public void test_isPalindrome_null() {
+
+    }
+
+    @Test
+    public void test_isPalindrome_true() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+        sut.append(1);
+        sut.append(2);
+        sut.append(3);
+        sut.append(2);
+        sut.append(1);
+
+        // when
+        boolean isPalindrome = sut.isPalindrome();
+
+        // then
+        assertTrue(isPalindrome);
+    }
+
+    @Test
+    public void test_isPalindrome_false() {
+        // given
+        DoublyLinkedList<Integer> sut = new DoublyLinkedList<>();
+        sut.append(1);
+        sut.append(2);
+        sut.append(3);
+        sut.append(4);
+        sut.append(5);
+
+        // when
+        boolean isPalindrome = sut.isPalindrome();
+
+        // then
+        assertFalse(isPalindrome);
+    }
+
 }

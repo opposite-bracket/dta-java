@@ -345,4 +345,53 @@ public class DoublyLinkedList<T> {
 
         return curr;
     }
+
+    // Swaps the values of the first and last nodes in the list.
+    public void swapFirstLast() {
+        if (length < 2) {
+            return;
+        }
+
+        T ht = head.getValue();
+        T tt = tail.getValue();
+        tail.setValue(ht);
+        head.setValue(tt);
+
+    }
+
+    // reverse
+    public void reverse() {
+        if (head == null) return;
+
+        Node cursor = head;
+        Node prev = null;
+
+        while (cursor != null) {
+            prev = cursor.getPrev();
+
+            cursor.setPrev(cursor.getNext());
+            cursor.setNext(prev);
+
+            cursor = cursor.getPrev();
+        }
+
+        prev = head;
+        head = tail;
+        tail = prev;
+    }
+
+    public boolean isPalindrome() {
+        Node left = head;
+        Node right = tail;
+
+        while (left != null && left != right) {
+
+            if (!left.getValue().equals(right.getValue())) return false;
+
+            left = left.getNext();
+            right = right.getPrev();
+        }
+
+        return true;
+    }
 }
