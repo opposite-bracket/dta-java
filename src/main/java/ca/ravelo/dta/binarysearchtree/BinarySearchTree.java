@@ -1,32 +1,60 @@
 package ca.ravelo.dta.binarysearchtree;
 
-import java.util.Objects;
+public class BinarySearchTree {
+    private Node root;
 
-public class BinarySearchTree<T> {
-    private Node<T> root;
-
-    // O(1)
-    public BinarySearchTree() {}
-
-    // O(1)
-    public Node<T> getRoot() {
+    public Node getRoot() {
         return root;
     }
 
-    // O(1)
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BinarySearchTree<?> that = (BinarySearchTree<?>) o;
-        return Objects.equals(root, that.root);
+    public boolean insert(int value) {
+        Node c = root; // current
+        Node newNode = new Node(value);
+        if (c == null) {
+            root = newNode;
+            return true;
+        }
+
+        while(c != null) {
+
+            if (c.value == value) {
+                return false;
+            }
+
+            // traverse
+            if (value < c.value) {
+                if (c.left == null) {
+                    c.left = newNode;
+                    return true;
+                }
+                c = c.left;
+            } else {
+                if (c.right == null) {
+                    c.right = newNode;
+                    return true;
+                }
+                c = c.right;
+            }
+        }
+
+        return true;
     }
 
-    // O(1)
-    @Override
-    public String toString() {
-        return "BinarySearchTree{" +
-                "root=" + root +
-                '}';
+    public boolean contains(int value) {
+        Node c = root; // current
+
+        while(c != null) {
+            if (c.value == value) {
+                return true;
+            }
+
+            if (value < c.value) {
+                c = c.left;
+            } else {
+                c = c.right;
+            }
+        }
+
+        return false;
     }
 }
