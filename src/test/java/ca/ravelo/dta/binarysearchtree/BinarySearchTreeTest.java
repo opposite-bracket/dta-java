@@ -21,11 +21,25 @@ class BinarySearchTreeTest {
         BinarySearchTree sut = new BinarySearchTree();
 
         // when
-        boolean inserted = sut.insert(1);
+        assertTrue(sut.insert(1));
 
         // then
-        assertTrue(inserted);
         assertEquals(1, sut.getRoot().value);
+    }
+
+    @Test
+    public void test_insert_duplicate() {
+        // given
+        BinarySearchTree sut = new BinarySearchTree();
+
+        // when
+        assertTrue(sut.insert(1));
+        assertFalse(sut.insert(1));
+
+        // then
+        assertEquals(1, sut.getRoot().value);
+        assertNull(sut.getRoot().left);
+        assertNull(sut.getRoot().right);
     }
 
     @Test
@@ -34,13 +48,28 @@ class BinarySearchTreeTest {
         BinarySearchTree sut = new BinarySearchTree();
 
         // when
-        sut.insert(0);
-        boolean inserted = sut.insert(1);
+        assertTrue(sut.insert(0));
+        assertTrue(sut.insert(1));
 
         // then
-        assertTrue(inserted);
         assertEquals(0, sut.getRoot().value);
         assertEquals(1, sut.getRoot().right.value);
+    }
+
+    @Test
+    public void test_insert_insertTwoToRight() {
+        // given
+        BinarySearchTree sut = new BinarySearchTree();
+
+        // when
+        assertTrue(sut.insert(1));
+        assertTrue(sut.insert(3));
+        assertTrue(sut.insert(5));
+
+        // then
+        assertEquals(1, sut.getRoot().value);
+        assertEquals(3, sut.getRoot().right.value);
+        assertEquals(5, sut.getRoot().right.right.value);
     }
 
     @Test
@@ -49,13 +78,52 @@ class BinarySearchTreeTest {
         BinarySearchTree sut = new BinarySearchTree();
 
         // when
-        sut.insert(1);
-        boolean inserted = sut.insert(0);
+        assertTrue(sut.insert(1));
+        assertTrue(sut.insert(0));
 
         // then
-        assertTrue(inserted);
         assertEquals(1, sut.getRoot().value);
         assertEquals(0, sut.getRoot().left.value);
+    }
+
+    @Test
+    public void test_insert_insertTwoToLeft() {
+        // given
+        BinarySearchTree sut = new BinarySearchTree();
+
+        // when
+        assertTrue(sut.insert(5));
+        assertTrue(sut.insert(3));
+        assertTrue(sut.insert(1));
+
+        // then
+        assertEquals(5, sut.getRoot().value);
+        assertEquals(3, sut.getRoot().left.value);
+        assertEquals(1, sut.getRoot().left.left.value);
+    }
+
+    @Test
+    public void test_contains_itemFound() {
+        // given
+        BinarySearchTree sut = new BinarySearchTree();
+        sut.insert(5);
+        sut.insert(3);
+        sut.insert(1);
+
+        // when
+        assertTrue(sut.contains(3));
+    }
+
+    @Test
+    public void test_contains_itemNotFound() {
+        // given
+        BinarySearchTree sut = new BinarySearchTree();
+        sut.insert(5);
+        sut.insert(3);
+        sut.insert(1);
+
+        // when
+        assertFalse(sut.contains(9));
     }
 
 }
